@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Servicios — SerenaMente</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <style>
+    .service-full {
+      background: var(--white);
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 2px 24px rgba(30,46,74,0.07);
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      margin-bottom: 32px;
+      transition: var(--transition);
+    }
+    .service-full:hover { box-shadow: var(--shadow-lg); transform: translateY(-2px); }
+    .service-full.reverse { direction: rtl; }
+    .service-full.reverse > * { direction: ltr; }
+    .service-full-visual {
+      background: linear-gradient(135deg, rgba(42,143,168,0.1), rgba(122,158,142,0.12));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 5rem;
+      min-height: 280px;
+      position: relative;
+    }
+    .service-full-visual::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(42,143,168,0.05), transparent);
+    }
+    .service-full-body { padding: 48px 40px; }
+    .service-full-body h3 { font-size: 1.8rem; margin-bottom: 12px; }
+    .service-full-body p { color: var(--text-muted); line-height: 1.8; margin-bottom: 20px; }
+    .service-features { margin: 20px 0 28px; }
+    .service-feature {
+      display: flex; align-items: center; gap: 10px;
+      font-size: 0.9rem; color: var(--text); margin-bottom: 10px;
+    }
+    .service-feature::before {
+      content: '✓';
+      width: 22px; height: 22px; border-radius: 50%;
+      background: rgba(42,143,168,0.12);
+      color: var(--teal);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.75rem; font-weight: 600; flex-shrink: 0;
+    }
+    .service-price {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      color: var(--teal);
+      margin-bottom: 20px;
+    }
+    .service-price span { font-size: 0.85rem; font-family: 'Jost', sans-serif; color: var(--text-muted); }
+
+    .packages-section { background: var(--cream-dark); }
+    .packages-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 48px;
+    }
+    .package-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 40px 32px;
+      text-align: center;
+      position: relative;
+      box-shadow: 0 2px 16px rgba(30,46,74,0.06);
+      transition: var(--transition);
+    }
+    .package-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
+    .package-card.featured {
+      background: linear-gradient(145deg, var(--teal-dark), var(--teal));
+      color: var(--white);
+    }
+    .package-card.featured h3,
+    .package-card.featured .package-price { color: var(--white); }
+    .package-card.featured p { color: rgba(255,255,255,0.75); }
+    .package-badge {
+      position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
+      background: var(--navy); color: var(--white);
+      font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase;
+      padding: 4px 14px; border-radius: 50px;
+    }
+    .package-card h3 { font-size: 1.4rem; margin-bottom: 8px; }
+    .package-price {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.8rem;
+      color: var(--teal);
+      line-height: 1;
+      margin: 16px 0 4px;
+    }
+    .package-period { font-size: 0.82rem; color: var(--text-muted); margin-bottom: 24px; }
+    .package-features { margin: 24px 0; text-align: left; }
+    .pkg-feature {
+      display: flex; align-items: center; gap: 10px;
+      font-size: 0.88rem; margin-bottom: 10px;
+      color: var(--text);
+    }
+    .package-card.featured .pkg-feature { color: rgba(255,255,255,0.85); }
+    .pkg-dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--teal-light); flex-shrink: 0;
+    }
+    .package-card.featured .pkg-dot { background: rgba(255,255,255,0.5); }
+
+    @media (max-width: 900px) {
+      .service-full { grid-template-columns: 1fr; }
+      .service-full.reverse { direction: ltr; }
+      .packages-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+</head>
+<body>
+
+  <nav class="navbar scrolled" id="navbar">
+    <div class="container">
+      <a href="index.html" class="nav-logo">
+        <img src="Logojueves.jpeg" alt="SerenaMente Logo" />
+        <span class="nav-logo-text">SerenaMente</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="nosotros.html">Nosotros</a></li>
+        <li><a href="servicios.html" class="active">Servicios</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="contacto.html">Contacto</a></li>
+      </ul>
+      <a href="contacto.html" class="btn btn-primary nav-cta">Empieza tu camino</a>
+      <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+
+  <div class="page-header">
+    <div class="container">
+      <span class="tag">Lo que ofrecemos</span>
+      <h1>Nuestros Servicios</h1>
+      <p>Cada servicio está diseñado con intención, cuidado y profesionalismo para acompañar tu bienestar real.</p>
+    </div>
+  </div>
+
+  <section class="section" style="background: var(--cream);">
+    <div class="container">
+
+      <div class="service-full reveal">
+        <div class="service-full-visual"><i class="fa fa-spa"></i></div>
+        <div class="service-full-body">
+          <span class="tag">Práctica diaria</span>
+          <h3>Meditación Guiada</h3>
+          <p>Sesiones de meditación diseñadas para guiarte desde el ruido interno hasta un estado de presencia plena. Utilizamos técnicas como mindfulness, meditación de amor y bondad, y visualización creativa.</p>
+          <div class="service-features">
+            <div class="service-feature">Sesiones individuales y grupales</div>
+            <div class="service-feature">Audios descargables para práctica en casa</div>
+            <div class="service-feature">Adaptadas a principiantes y practicantes avanzados</div>
+            <div class="service-feature">Seguimiento mensual de tu progreso</div>
+          </div>
+          <div class="service-price">Desde $80.000 COP <span>/ sesión</span></div>
+          <a href="contacto.html" class="btn btn-primary">Reservar sesión</a>
+        </div>
+      </div>
+
+      <div class="service-full reverse reveal">
+        <div class="service-full-visual"><i class="fa fa-comments"></i></div>
+        <div class="service-full-body">
+          <span class="tag">Apoyo profesional</span>
+          <h3>Acompañamiento Terapéutico</h3>
+          <p>Un espacio confidencial y seguro para explorar tus emociones, trabajar patrones que ya no te sirven y construir herramientas propias para una vida más equilibrada. Orientación psicológica con enfoque humanista.</p>
+          <div class="service-features">
+            <div class="service-feature">Sesiones individuales de 60 minutos</div>
+            <div class="service-feature">Modalidad presencial o virtual</div>
+            <div class="service-feature">Profesionales certificados</div>
+            <div class="service-feature">Plan personalizado de trabajo</div>
+          </div>
+          <div class="service-price">Desde $150.000 COP <span>/ sesión</span></div>
+          <a href="contacto.html" class="btn btn-primary">Agendar consulta</a>
+        </div>
+      </div>
+
+      <div class="service-full reveal">
+        <div class="service-full-visual"><i class="fa fa-book"></i></div>
+        <div class="service-full-body">
+          <span class="tag">Aprendizaje</span>
+          <h3>Talleres & Cursos</h3>
+          <p>Programas formativos diseñados para darte habilidades concretas que puedes aplicar desde el primer día. Desde el manejo del estrés hasta la comunicación consciente, cada taller es una puerta de transformación.</p>
+          <div class="service-features">
+            <div class="service-feature">Talleres online y presenciales</div>
+            <div class="service-feature">Grupos pequeños (máx. 12 personas)</div>
+            <div class="service-feature">Material de trabajo incluido</div>
+            <div class="service-feature">Acceso a comunidad privada</div>
+          </div>
+          <div class="service-price">Desde $200.000 COP <span>/ taller</span></div>
+          <a href="contacto.html" class="btn btn-primary">Ver próximas fechas</a>
+        </div>
+      </div>
+
+      <div class="service-full reverse reveal">
+        <div class="service-full-visual"><i class="fa fa-water"></i></div>
+        <div class="service-full-body">
+          <span class="tag">Rutinas personalizadas</span>
+          <h3>Rutinas de Relajación</h3>
+          <p>Programas estructurados de relajación que combinan respiración consciente, movimiento suave, técnicas sensoriales y meditación. Diseñados para integrarse en tu día a día, no para añadir más presión a tu agenda.</p>
+          <div class="service-features">
+            <div class="service-feature">Rutinas de 5, 15 y 30 minutos</div>
+            <div class="service-feature">Para mañana, tarde o noche</div>
+            <div class="service-feature">Grabaciones de audio personalizadas</div>
+            <div class="service-feature">Check-in semanal con tu guía</div>
+          </div>
+          <div class="service-price">Desde $120.000 COP <span>/ mes</span></div>
+          <a href="contacto.html" class="btn btn-primary">Crear mi rutina</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="section packages-section">
+    <div class="container">
+      <div class="reveal" style="text-align: center;">
+        <span class="tag">Planes</span>
+        <h2 class="section-title">Elige tu plan de bienestar</h2>
+        <div class="divider" style="margin: 20px auto;"></div>
+        <p class="section-sub" style="margin: 0 auto; text-align: center;">Planes pensados para adaptarse a tu momento de vida y a lo que necesitas ahora.</p>
+      </div>
+      <div class="packages-grid">
+        <div class="package-card reveal">
+          <h3>Esencial</h3>
+          <p style="font-size:0.88rem; color:var(--text-muted);">Para dar los primeros pasos</p>
+          <div class="package-price">$80K</div>
+          <div class="package-period">por sesión</div>
+          <div class="package-features">
+            <div class="pkg-feature"><div class="pkg-dot"></div>1 sesión de meditación</div>
+            <div class="pkg-feature"><div class="pkg-dot"></div>Audio de relajación</div>
+            <div class="pkg-feature"><div class="pkg-dot"></div>Guía de inicio</div>
+            <div class="pkg-feature"><div class="pkg-dot"></div>Soporte por WhatsApp</div>
+          </div>
+          <a href="contacto.html" class="btn btn-outline" style="width:100%; justify-content:center;">Comenzar</a>
+        </div>
+        <div class="package-card featured reveal">
+          <div class="package-badge">Más popular</div>
+          <h3>Bienestar</h3>
+          <p style="color:rgba(255,255,255,0.7); font-size:0.88rem;">Para una transformación real</p>
+          <div class="package-price">$350K</div>
+          <div class="package-period" style="color:rgba(255,255,255,0.55);">por mes</div>
+          <div class="package-features">
+            <div class="pkg-feature"><div class="pkg-dot"></div>4 sesiones de meditación</div>
+            <div class="pkg-feature"><div class="pkg-dot"></div>1 sesión terapéutica</div>
+            <div class="pkg-feature"><div class="pkg-dot"></div>Rutina personalizada</div>
+            <div class="pkg-feature"><div class="pkg-dot"></div>Acceso a talleres</div>
+            <div class="pkg-feature"><div class="pkg-dot"></div>Seguimiento semanal</div>
+          </div>
+          <a href="contacto.html" class="btn btn-white" style="width:100%; justify-content:center;">Empezar ahora</a>
+        </div>
+        <div class="package-card reveal">
+          <h3>Integral</h3>
+          <p style="font-size:0.88rem; color:var(--text-muted);">Acompañamiento completo</p>
+          <div class="package-price">$600K</div>
+          <div class="package-period">por mes</div>
+          <div class="package-features">
+            <div class="pkg-feature"><div class="pkg-dot"></div>Sesiones ilimitadas de meditación</div>
+            <div class="pkg-feature"><div class="pkg-dot"></div>4 sesiones terapéuticas</div>
+            <div class="pkg-feature"><div class="pkg-dot"></div>Todos los talleres del mes</div>
+            <div class="pkg-feature"><div class="pkg-dot"></div>Rutina y seguimiento diario</div>
+            <div class="pkg-feature"><div class="pkg-dot"></div>Prioridad en agenda</div>
+          </div>
+          <a href="contacto.html" class="btn btn-outline" style="width:100%; justify-content:center;">Comenzar</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding: 96px 0; background: var(--cream);">
+    <div class="container">
+      <div class="cta-banner reveal">
+        <h2>¿No sabes por dónde empezar?</h2>
+        <p>Agenda una llamada gratuita de 20 minutos y te ayudamos a encontrar el servicio ideal para ti.</p>
+        <a href="contacto.html" class="btn btn-white">Llamada gratuita →</a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-brand-logo">
+            <img src="Logojueves.jpeg" alt="Logo" />
+            <span class="footer-brand-name">SerenaMente</span>
+          </div>
+          <p class="footer-desc">Un espacio para reconectar contigo. Calma, confianza y equilibrio para tu vida.</p>
+          <div class="social-links">
+            <a href="#" class="social-link"><i class="fa fa-camera"></i></a>
+            <a href="#" class="social-link"><i class="fa fa-heart"></i></a>
+            <a href="#" class="social-link"><i class="fa fa-comments"></i></a>
+            <a href="#" class="social-link"><i class="fa fa-heart"></i></a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Navegación</h4>
+          <ul class="footer-links">
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="nosotros.html">Nosotros</a></li>
+            <li><a href="servicios.html">Servicios</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Servicios</h4>
+          <ul class="footer-links">
+            <li><a href="#">Meditación guiada</a></li>
+            <li><a href="#">Acompañamiento terapéutico</a></li>
+            <li><a href="#">Talleres & Cursos</a></li>
+            <li><a href="#">Rutinas de relajación</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contacto</h4>
+          <ul class="footer-links">
+            <li><a href="mailto:hola@serenamente.co">hola@serenamente.co</a></li>
+            <li><a href="#">WhatsApp</a></li>
+            <li><a href="#">Montería, Córdoba</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2025 SerenaMente. Todos los derechos reservados.</span>
+        <div class="footer-bottom-links">
+          <a href="#">Política de privacidad</a>
+          <a href="#">Términos de uso</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 50));
+    const revealEls = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach((e, i) => { if (e.isIntersecting) { setTimeout(() => e.target.classList.add('visible'), i * 80); observer.unobserve(e.target); }});
+    }, { threshold: 0.1 });
+    revealEls.forEach(el => observer.observe(el));
+  </script>
+  <script src="zen_addon.js"></script>
+</body>
+</html>

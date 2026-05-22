@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contacto — SerenaMente</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <style>
+    .faq-list { margin-top: 48px; }
+    .faq-item {
+      border-bottom: 1px solid rgba(42,143,168,0.12);
+      padding: 0;
+    }
+    .faq-question {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 22px 0;
+      background: none;
+      text-align: left;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      color: var(--navy);
+      cursor: pointer;
+      transition: color var(--transition);
+    }
+    .faq-question:hover { color: var(--teal); }
+    .faq-icon {
+      font-size: 1.2rem;
+      transition: transform var(--transition);
+      color: var(--teal);
+    }
+    .faq-item.open .faq-icon { transform: rotate(45deg); }
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease, padding 0.3s;
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      line-height: 1.8;
+    }
+    .faq-item.open .faq-answer {
+      max-height: 300px;
+      padding-bottom: 20px;
+    }
+
+    .whatsapp-float {
+      position: fixed;
+      bottom: 32px; right: 32px;
+      z-index: 999;
+      width: 58px; height: 58px;
+      border-radius: 50%;
+      background: #25D366;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.6rem;
+      box-shadow: 0 6px 24px rgba(37,211,102,0.4);
+      transition: var(--transition);
+      text-decoration: none;
+    }
+    .whatsapp-float:hover { transform: scale(1.1); box-shadow: 0 10px 32px rgba(37,211,102,0.5); }
+
+    .map-placeholder {
+      width: 100%;
+      border-radius: var(--radius);
+      height: 220px;
+      background: linear-gradient(135deg, rgba(42,143,168,0.1), rgba(122,158,142,0.12));
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.5rem;
+      gap: 10px;
+      margin-top: 28px;
+      border: 1.5px dashed rgba(42,143,168,0.2);
+    }
+    .map-placeholder p { font-size: 0.85rem; color: var(--text-muted); }
+
+    .success-msg {
+      display: none;
+      background: linear-gradient(135deg, rgba(42,143,168,0.1), rgba(122,158,142,0.1));
+      border: 1px solid rgba(42,143,168,0.2);
+      border-radius: 12px;
+      padding: 20px;
+      text-align: center;
+      margin-top: 20px;
+    }
+    .success-msg.show { display: block; }
+    .success-msg p { color: var(--teal-dark); font-size: 0.95rem; }
+  </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+</head>
+<body>
+
+  <a href="https://wa.me/57XXXXXXXXXX" class="whatsapp-float" title="WhatsApp" target="_blank"><i class="fa fa-comments"></i></a>
+
+  <nav class="navbar scrolled" id="navbar">
+    <div class="container">
+      <a href="index.html" class="nav-logo">
+        <img src="Logojueves.jpeg" alt="SerenaMente Logo" />
+        <span class="nav-logo-text">SerenaMente</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="nosotros.html">Nosotros</a></li>
+        <li><a href="servicios.html">Servicios</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="contacto.html" class="active">Contacto</a></li>
+      </ul>
+      <a href="contacto.html" class="btn btn-primary nav-cta">Empieza tu camino</a>
+      <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+
+  <div class="page-header">
+    <div class="container">
+      <span class="tag">Hablemos</span>
+      <h1>Contáctanos</h1>
+      <p>Estamos aquí para acompañarte. Escríbenos y con gusto te orientamos hacia el servicio que mejor se adapta a ti.</p>
+    </div>
+  </div>
+
+  <section class="section" style="background: var(--white);">
+    <div class="container">
+      <div class="contact-grid">
+
+        <div class="reveal">
+          <span class="tag">Información de contacto</span>
+          <h2 class="section-title">¿Cómo podemos ayudarte?</h2>
+          <div class="divider"></div>
+          <p style="color: var(--text-muted); margin-bottom: 36px; line-height: 1.8;">
+            Da el primer paso. Un simple mensaje puede ser el inicio de una transformación real en tu vida. Respondemos con amor y en menos de 24 horas.
+          </p>
+
+          <div class="contact-info-item">
+            <div class="contact-info-icon"><i class="fa fa-envelope"></i></div>
+            <div>
+              <h4>Correo electrónico</h4>
+              <a href="mailto:hola@serenamente.co">hola@serenamente.co</a>
+            </div>
+          </div>
+          <div class="contact-info-item">
+            <div class="contact-info-icon"><i class="fa fa-comments"></i></div>
+            <div>
+              <h4>WhatsApp</h4>
+              <a href="https://wa.me/57XXXXXXXXXX" target="_blank">+57 XXX XXX XXXX</a>
+            </div>
+          </div>
+          <div class="contact-info-item">
+            <div class="contact-info-icon"><i class="fa fa-map-marker"></i></div>
+            <div>
+              <h4>Ubicación</h4>
+              <p>Montería, Córdoba, Colombia</p>
+              <p style="font-size:0.82rem; margin-top: 2px;">Sesiones presenciales y virtuales</p>
+            </div>
+          </div>
+          <div class="contact-info-item">
+            <div class="contact-info-icon"><i class="fa fa-clock-o"></i></div>
+            <div>
+              <h4>Horario de atención</h4>
+              <p>Lunes — Viernes: 8:00 am – 7:00 pm</p>
+              <p>Sábados: 9:00 am – 2:00 pm</p>
+            </div>
+          </div>
+
+          <div class="social-links" style="margin-top: 24px;">
+            <a href="#" class="social-link" title="Instagram"><i class="fa fa-camera"></i></a>
+            <a href="#" class="social-link" title="Facebook"><i class="fa fa-heart"></i></a>
+            <a href="#" class="social-link" title="WhatsApp"><i class="fa fa-comments"></i></a>
+            <a href="#" class="social-link" title="YouTube">▶️</a>
+          </div>
+
+          <div class="map-placeholder">
+            <span><i class="fa fa-map-marker"></i></span>
+            <p>Montería, Córdoba</p>
+          </div>
+        </div>
+
+        <div class="contact-form reveal">
+          <span class="tag">Formulario de contacto</span>
+          <h3 style="font-size: 1.6rem; margin-bottom: 8px; margin-top: 8px;">Envíanos un mensaje</h3>
+          <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 28px;">Cuéntanos brevemente qué estás buscando y te orientamos.</p>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label>Nombre</label>
+              <input type="text" id="nombre" placeholder="Tu nombre" />
+            </div>
+            <div class="form-group">
+              <label>Apellido</label>
+              <input type="text" placeholder="Tu apellido" />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Correo electrónico</label>
+            <input type="email" id="email" placeholder="tu@correo.com" />
+          </div>
+
+          <div class="form-group">
+            <label>WhatsApp (opcional)</label>
+            <input type="tel" placeholder="+57 300 000 0000" />
+          </div>
+
+          <div class="form-group">
+            <label>¿Qué te interesa?</label>
+            <select>
+              <option value="">Selecciona un servicio</option>
+              <option>Meditación guiada</option>
+              <option>Acompañamiento terapéutico</option>
+              <option>Talleres & Cursos</option>
+              <option>Rutinas de relajación</option>
+              <option>Llamada gratuita de orientación</option>
+              <option>Otro</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>Mensaje</label>
+            <textarea placeholder="Cuéntanos brevemente cómo te sentiste llegando aquí y qué estás buscando..."></textarea>
+          </div>
+
+          <div class="form-group" style="display: flex; align-items: center; gap: 10px;">
+            <input type="checkbox" id="privacy" style="width: auto; accent-color: var(--teal);" />
+            <label for="privacy" style="font-size: 0.82rem; text-transform: none; letter-spacing: 0; color: var(--text-muted); font-weight: 300;">
+              Acepto la <a href="#" style="color: var(--teal);">política de privacidad</a> y el tratamiento de mis datos.
+            </label>
+          </div>
+
+          <button class="btn btn-primary" style="width: 100%; justify-content: center;" onclick="handleSubmit()">
+            Enviar mensaje <i class="fa fa-leaf"></i>
+          </button>
+
+          <div class="success-msg" id="successMsg">
+            <p><i class="fa fa-water"></i> ¡Gracias por escribirnos! Recibirás nuestra respuesta en menos de 24 horas. Respira tranquilo/a.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="background: var(--cream);">
+    <div class="container" style="max-width: 760px;">
+      <div class="reveal" style="text-align: center;">
+        <span class="tag">Preguntas frecuentes</span>
+        <h2 class="section-title">Resolvemos tus dudas</h2>
+        <div class="divider" style="margin: 20px auto;"></div>
+      </div>
+      <div class="faq-list">
+        <div class="faq-item reveal">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            ¿Las sesiones son presenciales o virtuales?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            Ofrecemos ambas modalidades. Las sesiones virtuales se realizan por videollamada (Zoom o Meet) y son igualmente efectivas. Las sesiones presenciales están disponibles en Montería, Córdoba.
+          </div>
+        </div>
+        <div class="faq-item reveal">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            ¿Necesito tener experiencia en meditación para comenzar?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            Para nada. Nuestros servicios están diseñados para acompañar a personas en cualquier punto de su camino, desde quienes nunca han meditado hasta practicantes con años de experiencia. Siempre partimos de donde estás tú.
+          </div>
+        </div>
+        <div class="faq-item reveal">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            ¿Cómo sé qué servicio es el adecuado para mí?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            Ofrecemos una llamada gratuita de 20 minutos donde conversamos sobre lo que estás viviendo y te orientamos hacia el servicio o plan que mejor se adapta a tus necesidades actuales.
+          </div>
+        </div>
+        <div class="faq-item reveal">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            ¿Qué pasa si tengo que cancelar una sesión?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            Entendemos que la vida es cambiante. Puedes cancelar o reagendar con un mínimo de 24 horas de anticipación sin ningún cargo. Tu proceso es flexible, igual que tú.
+          </div>
+        </div>
+        <div class="faq-item reveal">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            ¿Las sesiones son confidenciales?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            Absolutamente. Todo lo que compartes en tus sesiones es estrictamente confidencial. Tu privacidad y confianza son nuestra prioridad y la base de nuestra relación contigo.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-brand-logo">
+            <img src="Logojueves.jpeg" alt="Logo" />
+            <span class="footer-brand-name">SerenaMente</span>
+          </div>
+          <p class="footer-desc">Un espacio para reconectar contigo. Calma, confianza y equilibrio para tu vida.</p>
+          <div class="social-links">
+            <a href="#" class="social-link"><i class="fa fa-camera"></i></a>
+            <a href="#" class="social-link"><i class="fa fa-heart"></i></a>
+            <a href="#" class="social-link"><i class="fa fa-comments"></i></a>
+            <a href="#" class="social-link"><i class="fa fa-heart"></i></a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Navegación</h4>
+          <ul class="footer-links">
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="nosotros.html">Nosotros</a></li>
+            <li><a href="servicios.html">Servicios</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Servicios</h4>
+          <ul class="footer-links">
+            <li><a href="servicios.html">Meditación guiada</a></li>
+            <li><a href="servicios.html">Acompañamiento terapéutico</a></li>
+            <li><a href="servicios.html">Talleres & Cursos</a></li>
+            <li><a href="servicios.html">Rutinas de relajación</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contacto</h4>
+          <ul class="footer-links">
+            <li><a href="mailto:hola@serenamente.co">hola@serenamente.co</a></li>
+            <li><a href="#">WhatsApp</a></li>
+            <li><a href="#">Montería, Córdoba</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2025 SerenaMente. Todos los derechos reservados.</span>
+        <div class="footer-bottom-links">
+          <a href="#">Política de privacidad</a>
+          <a href="#">Términos de uso</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 50));
+    const revealEls = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach((e, i) => { if (e.isIntersecting) { setTimeout(() => e.target.classList.add('visible'), i * 80); observer.unobserve(e.target); }});
+    }, { threshold: 0.1 });
+    revealEls.forEach(el => observer.observe(el));
+
+    function toggleFaq(btn) {
+      const item = btn.parentElement;
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    }
+
+    function handleSubmit() {
+      const nombre = document.getElementById('nombre').value;
+      const email = document.getElementById('email').value;
+      if (!nombre || !email) { alert('Por favor completa los campos requeridos.'); return; }
+      document.getElementById('successMsg').classList.add('show');
+    }
+  </script>
+  <script src="zen_addon.js"></script>
+</body>
+</html>

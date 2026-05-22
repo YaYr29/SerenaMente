@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blog — SerenaMente</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <style>
+    .filter-bar {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 48px;
+    }
+    .filter-btn {
+      padding: 8px 20px;
+      border-radius: 50px;
+      font-size: 0.82rem;
+      font-weight: 400;
+      letter-spacing: 0.06em;
+      border: 1.5px solid rgba(42,143,168,0.2);
+      background: transparent;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: var(--transition);
+      font-family: 'Jost', sans-serif;
+    }
+    .filter-btn:hover,
+    .filter-btn.active {
+      background: var(--teal);
+      border-color: var(--teal);
+      color: var(--white);
+    }
+
+    .blog-hero-card {
+      background: var(--white);
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      margin-bottom: 40px;
+      transition: var(--transition);
+    }
+    .blog-hero-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-3px); }
+    .blog-hero-img {
+      background: linear-gradient(135deg, rgba(42,143,168,0.15), rgba(122,158,142,0.15));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 6rem;
+      min-height: 320px;
+    }
+    .blog-hero-body { padding: 48px 40px; display: flex; flex-direction: column; justify-content: center; }
+    .blog-hero-body h2 { font-size: 1.8rem; margin-bottom: 14px; }
+    .blog-hero-body p { font-size: 0.95rem; color: var(--text-muted); line-height: 1.8; margin-bottom: 24px; }
+
+    .blog-main-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 40px;
+      align-items: start;
+    }
+
+    .blog-list { display: flex; flex-direction: column; gap: 24px; }
+
+    .blog-list-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      box-shadow: 0 2px 16px rgba(30,46,74,0.06);
+      transition: var(--transition);
+    }
+    .blog-list-card:hover { transform: translateX(4px); box-shadow: var(--shadow); }
+    .blog-list-img {
+      background: linear-gradient(135deg, rgba(42,143,168,0.1), rgba(122,158,142,0.12));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 2.5rem;
+    }
+    .blog-list-body { padding: 24px; }
+    .blog-list-body h3 { font-size: 1.1rem; margin-bottom: 8px; transition: color var(--transition); }
+    .blog-list-card:hover h3 { color: var(--teal); }
+    .blog-list-body p { font-size: 0.85rem; color: var(--text-muted); line-height: 1.65; }
+
+    /* Sidebar */
+    .sidebar { position: sticky; top: 100px; }
+    .sidebar-block {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 28px;
+      box-shadow: 0 2px 16px rgba(30,46,74,0.06);
+      margin-bottom: 24px;
+    }
+    .sidebar-block h4 {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--navy);
+      margin-bottom: 20px;
+    }
+    .sidebar-article {
+      display: flex; gap: 12px;
+      margin-bottom: 16px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid rgba(0,0,0,0.05);
+    }
+    .sidebar-article:last-child { border: none; margin-bottom: 0; padding-bottom: 0; }
+    .sidebar-article-emoji { font-size: 1.5rem; flex-shrink: 0; }
+    .sidebar-article h5 { font-family: 'Jost', sans-serif; font-size: 0.88rem; font-weight: 400; color: var(--navy); margin-bottom: 3px; transition: color var(--transition); cursor: pointer; }
+    .sidebar-article h5:hover { color: var(--teal); }
+    .sidebar-article span { font-size: 0.78rem; color: var(--text-muted); }
+
+    .tags-list { display: flex; flex-wrap: wrap; gap: 8px; }
+    .tag-chip {
+      padding: 5px 14px;
+      border-radius: 50px;
+      border: 1.5px solid rgba(42,143,168,0.2);
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    .tag-chip:hover { background: var(--teal); border-color: var(--teal); color: var(--white); }
+
+    .newsletter-block {
+      background: linear-gradient(135deg, var(--teal-dark), var(--teal));
+      border-radius: var(--radius);
+      padding: 28px;
+      color: var(--white);
+      margin-bottom: 24px;
+    }
+    .newsletter-block h4 { color: var(--white); font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; margin-bottom: 8px; }
+    .newsletter-block p { font-size: 0.85rem; color: rgba(255,255,255,0.75); margin-bottom: 16px; }
+    .newsletter-input {
+      width: 100%;
+      padding: 12px 16px;
+      border-radius: 8px;
+      border: none;
+      background: rgba(255,255,255,0.15);
+      color: var(--white);
+      font-family: 'Jost', sans-serif;
+      font-size: 0.85rem;
+      margin-bottom: 10px;
+      outline: none;
+    }
+    .newsletter-input::placeholder { color: rgba(255,255,255,0.55); }
+    .newsletter-btn {
+      width: 100%;
+      padding: 12px;
+      background: var(--white);
+      color: var(--teal-dark);
+      border-radius: 8px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      font-family: 'Jost', sans-serif;
+      transition: var(--transition);
+    }
+    .newsletter-btn:hover { background: var(--cream); }
+
+    @media (max-width: 900px) {
+      .blog-main-grid { grid-template-columns: 1fr; }
+      .blog-hero-card { grid-template-columns: 1fr; }
+      .sidebar { position: static; }
+      .blog-list-card { grid-template-columns: 100px 1fr; }
+    }
+  </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+</head>
+<body>
+
+  <nav class="navbar scrolled" id="navbar">
+    <div class="container">
+      <a href="index.html" class="nav-logo">
+        <img src="Logojueves.jpeg" alt="SerenaMente Logo" />
+        <span class="nav-logo-text">SerenaMente</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="nosotros.html">Nosotros</a></li>
+        <li><a href="servicios.html">Servicios</a></li>
+        <li><a href="blog.html" class="active">Blog</a></li>
+        <li><a href="contacto.html">Contacto</a></li>
+      </ul>
+      <a href="contacto.html" class="btn btn-primary nav-cta">Empieza tu camino</a>
+      <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+
+  <div class="page-header">
+    <div class="container">
+      <span class="tag">Recursos gratuitos</span>
+      <h1>Blog SerenaMente</h1>
+      <p>Artículos, guías y tips para cultivar tu bienestar mental en el día a día.</p>
+    </div>
+  </div>
+
+  <section class="section" style="background: var(--cream);">
+    <div class="container">
+
+      <div class="filter-bar reveal">
+        <button class="filter-btn active">Todos</button>
+        <button class="filter-btn">Ansiedad</button>
+        <button class="filter-btn">Estrés</button>
+        <button class="filter-btn">Meditación</button>
+        <button class="filter-btn">Hábitos</button>
+        <button class="filter-btn">Emociones</button>
+        <button class="filter-btn">Sueño</button>
+      </div>
+
+      <div class="blog-hero-card reveal">
+        <div class="blog-hero-img"><i class="fa fa-wind"></i></div>
+        <div class="blog-hero-body">
+          <div class="blog-meta" style="margin-bottom: 12px;">
+            <span class="tag" style="margin: 0;">Ansiedad</span>
+            <div class="blog-meta-dot"></div>
+            <span style="font-size:0.82rem; color:var(--text-muted);">5 min lectura</span>
+            <div class="blog-meta-dot"></div>
+            <span style="font-size:0.82rem; color:var(--text-muted);">Marzo 2025</span>
+          </div>
+          <h2>5 técnicas de respiración para calmar la ansiedad en minutos</h2>
+          <p>Cuando la ansiedad llega, el cuerpo entra en modo de alarma. Estas técnicas de respiración, respaldadas por la neurociencia, pueden ayudarte a recuperar la calma casi de inmediato.</p>
+          <a href="#" class="btn btn-primary">Leer artículo completo</a>
+        </div>
+      </div>
+
+      <div class="blog-main-grid">
+        <div class="blog-list">
+          <div class="blog-list-card reveal">
+            <div class="blog-list-img"><i class="fa fa-moon"></i></div>
+            <div class="blog-list-body">
+              <div class="blog-meta"><span>Hábitos</span><div class="blog-meta-dot"></div><span>7 min</span></div>
+              <h3>Cómo construir una rutina nocturna que realmente te descanse</h3>
+              <p>El descanso es la base de todo. Descubre qué hábitos proteger antes de dormir para despertar con energía real.</p>
+            </div>
+          </div>
+          <div class="blog-list-card reveal">
+            <div class="blog-list-img"><i class="fa fa-brain"></i></div>
+            <div class="blog-list-body">
+              <div class="blog-meta"><span>Estrés</span><div class="blog-meta-dot"></div><span>6 min</span></div>
+              <h3>¿Por qué el estrés crónico afecta tu cuerpo y cómo revertirlo?</h3>
+              <p>Entender el estrés es el primer paso para liberarse de él. Aquí te explicamos cómo el cuerpo responde y qué puedes hacer.</p>
+            </div>
+          </div>
+          <div class="blog-list-card reveal">
+            <div class="blog-list-img"><i class="fa fa-leaf"></i></div>
+            <div class="blog-list-body">
+              <div class="blog-meta"><span>Meditación</span><div class="blog-meta-dot"></div><span>4 min</span></div>
+              <h3>Meditación para principiantes: los primeros 7 días</h3>
+              <p>Una guía paso a paso para comenzar tu práctica de meditación sin complicaciones ni presión de hacerlo perfecto.</p>
+            </div>
+          </div>
+          <div class="blog-list-card reveal">
+            <div class="blog-list-img"><i class="fa fa-comment"></i></div>
+            <div class="blog-list-body">
+              <div class="blog-meta"><span>Emociones</span><div class="blog-meta-dot"></div><span>8 min</span></div>
+              <h3>Cómo dejar de rumiar: estrategias para salir del loop mental</h3>
+              <p>La rumiación es uno de los hábitos más agotadores de la mente. Estas técnicas te ayudan a soltarla sin suprimirla.</p>
+            </div>
+          </div>
+          <div class="blog-list-card reveal">
+            <div class="blog-list-img"><i class="fa fa-sun"></i></div>
+            <div class="blog-list-body">
+              <div class="blog-meta"><span>Hábitos</span><div class="blog-meta-dot"></div><span>5 min</span></div>
+              <h3>5 formas de relajarte en 5 minutos cuando no tienes tiempo</h3>
+              <p>No necesitas una hora de meditación. Aquí tienes micro-prácticas que caben en cualquier pausa de tu día.</p>
+            </div>
+          </div>
+          <div class="blog-list-card reveal">
+            <div class="blog-list-img"><i class="fa fa-bed"></i></div>
+            <div class="blog-list-body">
+              <div class="blog-meta"><span>Sueño</span><div class="blog-meta-dot"></div><span>6 min</span></div>
+              <h3>Insomnio y ansiedad: el círculo vicioso y cómo romperlo</h3>
+              <p>Cuando la mente no para y el sueño no llega. Estrategias basadas en evidencia para interrumpir este ciclo.</p>
+            </div>
+          </div>
+        </div>
+
+        <aside class="sidebar">
+          <div class="newsletter-block reveal">
+            <h4><i class="fa fa-envelope"></i> Recibe contenido de bienestar</h4>
+            <p>Un correo a la semana con tips, reflexiones y recursos para tu calma.</p>
+            <input type="email" class="newsletter-input" placeholder="Tu correo electrónico" />
+            <button class="newsletter-btn">Suscribirme gratis</button>
+          </div>
+          <div class="sidebar-block reveal">
+            <h4>Más leídos</h4>
+            <div class="sidebar-article">
+              <div class="sidebar-article-emoji"><i class="fa fa-wind"></i></div>
+              <div>
+                <h5>5 técnicas de respiración para la ansiedad</h5>
+                <span>4.2K lecturas</span>
+              </div>
+            </div>
+            <div class="sidebar-article">
+              <div class="sidebar-article-emoji"><i class="fa fa-spa"></i></div>
+              <div>
+                <h5>Meditación para principiantes: 7 días</h5>
+                <span>3.1K lecturas</span>
+              </div>
+            </div>
+            <div class="sidebar-article">
+              <div class="sidebar-article-emoji"><i class="fa fa-sun"></i></div>
+              <div>
+                <h5>Relajarte en 5 minutos</h5>
+                <span>2.8K lecturas</span>
+              </div>
+            </div>
+          </div>
+          <div class="sidebar-block reveal">
+            <h4>Categorías</h4>
+            <div class="tags-list">
+              <span class="tag-chip">Ansiedad</span>
+              <span class="tag-chip">Estrés</span>
+              <span class="tag-chip">Meditación</span>
+              <span class="tag-chip">Hábitos</span>
+              <span class="tag-chip">Emociones</span>
+              <span class="tag-chip">Sueño</span>
+              <span class="tag-chip">Mindfulness</span>
+              <span class="tag-chip">Autoestima</span>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-brand-logo">
+            <img src="Logojueves.jpeg" alt="Logo" />
+            <span class="footer-brand-name">SerenaMente</span>
+          </div>
+          <p class="footer-desc">Un espacio para reconectar contigo. Calma, confianza y equilibrio para tu vida.</p>
+          <div class="social-links">
+            <a href="#" class="social-link"><i class="fa fa-camera"></i></a>
+            <a href="#" class="social-link"><i class="fa fa-heart"></i></a>
+            <a href="#" class="social-link"><i class="fa fa-comments"></i></a>
+            <a href="#" class="social-link"><i class="fa fa-heart"></i></a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Navegación</h4>
+          <ul class="footer-links">
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="nosotros.html">Nosotros</a></li>
+            <li><a href="servicios.html">Servicios</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Servicios</h4>
+          <ul class="footer-links">
+            <li><a href="servicios.html">Meditación guiada</a></li>
+            <li><a href="servicios.html">Acompañamiento terapéutico</a></li>
+            <li><a href="servicios.html">Talleres & Cursos</a></li>
+            <li><a href="servicios.html">Rutinas de relajación</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contacto</h4>
+          <ul class="footer-links">
+            <li><a href="mailto:hola@serenamente.co">hola@serenamente.co</a></li>
+            <li><a href="#">WhatsApp</a></li>
+            <li><a href="#">Montería, Córdoba</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2025 SerenaMente. Todos los derechos reservados.</span>
+        <div class="footer-bottom-links">
+          <a href="#">Política de privacidad</a>
+          <a href="#">Términos de uso</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 50));
+    const revealEls = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach((e, i) => { if (e.isIntersecting) { setTimeout(() => e.target.classList.add('visible'), i * 80); observer.unobserve(e.target); }});
+    }, { threshold: 0.1 });
+    revealEls.forEach(el => observer.observe(el));
+
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+      });
+    });
+  </script>
+  <script src="zen_addon.js"></script>
+</body>
+</html>

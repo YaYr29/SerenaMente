@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nosotros — SerenaMente</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <style>
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 24px;
+      margin-top: 48px;
+    }
+    .value-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 36px 28px;
+      text-align: center;
+      box-shadow: 0 2px 16px rgba(30,46,74,0.06);
+      transition: var(--transition);
+    }
+    .value-card:hover { transform: translateY(-6px); box-shadow: var(--shadow); }
+    .value-emoji { font-size: 2.4rem; margin-bottom: 16px; }
+    .value-card h3 { font-size: 1.25rem; margin-bottom: 10px; }
+    .value-card p { font-size: 0.9rem; color: var(--text-muted); line-height: 1.65; }
+
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 28px;
+      margin-top: 48px;
+    }
+    .team-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      overflow: hidden;
+      text-align: center;
+      box-shadow: 0 2px 16px rgba(30,46,74,0.06);
+      transition: var(--transition);
+    }
+    .team-card:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
+    .team-avatar {
+      width: 100%; aspect-ratio: 1;
+      background: linear-gradient(135deg, rgba(42,143,168,0.12), rgba(122,158,142,0.15));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 4rem;
+    }
+    .team-body { padding: 24px; }
+    .team-body h3 { font-size: 1.2rem; margin-bottom: 4px; }
+    .team-role { font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--teal); margin-bottom: 12px; }
+    .team-body p { font-size: 0.88rem; color: var(--text-muted); line-height: 1.65; }
+
+    .mission-section {
+      background: linear-gradient(135deg, var(--navy), var(--navy-soft));
+      position: relative;
+      overflow: hidden;
+    }
+    .mission-section::before {
+      content: '';
+      position: absolute;
+      top: -80px; right: -80px;
+      width: 350px; height: 350px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(91,184,208,0.12), transparent 70%);
+    }
+    .mission-cards {
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      gap: 24px;
+      margin-top: 48px;
+    }
+    .mission-card {
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: var(--radius);
+      padding: 36px 28px;
+    }
+    .mission-card h3 { color: var(--white); margin-bottom: 12px; }
+    .mission-card p { font-size: 0.9rem; color: rgba(255,255,255,0.65); line-height: 1.75; }
+    .mission-icon { font-size: 2rem; margin-bottom: 16px; }
+
+    @media (max-width: 900px) {
+      .mission-cards { grid-template-columns: 1fr; }
+    }
+  </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+</head>
+<body>
+
+  <nav class="navbar scrolled" id="navbar">
+    <div class="container">
+      <a href="index.html" class="nav-logo">
+        <img src="Logojueves.jpeg" alt="SerenaMente Logo" />
+        <span class="nav-logo-text">SerenaMente</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="nosotros.html" class="active">Nosotros</a></li>
+        <li><a href="servicios.html">Servicios</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="contacto.html">Contacto</a></li>
+      </ul>
+      <a href="contacto.html" class="btn btn-primary nav-cta">Empieza tu camino</a>
+      <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+
+  <div class="page-header">
+    <div class="container">
+      <span class="tag">Quiénes somos</span>
+      <h1>Sobre SerenaMente</h1>
+      <p>Conoce la historia, los valores y las personas detrás del espacio que cuida tu bienestar.</p>
+    </div>
+  </div>
+
+  <section class="section" style="background: var(--white);">
+    <div class="container">
+      <div class="about-grid">
+        <div class="reveal">
+          <span class="tag">Nuestra historia</span>
+          <h2 class="section-title">¿Cómo nació SerenaMente?</h2>
+          <div class="divider"></div>
+          <p style="color: var(--text-muted); margin-bottom: 20px; line-height: 1.85;">
+            SerenaMente nació de una necesidad personal y colectiva: encontrar un lugar donde el bienestar mental se trate con la misma seriedad y ternura que merece. En un mundo que celebra la velocidad, decidimos crear un espacio que celebre la pausa.
+          </p>
+          <p style="color: var(--text-muted); margin-bottom: 20px; line-height: 1.85;">
+            Comenzamos en 2021 con un pequeño grupo de meditación en Montería, Córdoba. Lo que empezó como una reunión entre amigos que buscaban herramientas para manejar el estrés, se convirtió en una comunidad de más de 500 personas que hoy caminan juntas hacia una vida más serena.
+          </p>
+          <p style="color: var(--text-muted); line-height: 1.85;">
+            Hoy, SerenaMente ofrece servicios de meditación guiada, acompañamiento terapéutico, talleres y recursos digitales que llegan a personas de toda Colombia, con el mismo corazón de siempre: <em style="color: var(--teal);">calma, confianza y equilibrio</em>.
+          </p>
+        </div>
+        <div class="about-visual reveal">
+          <div class="about-img-wrap">
+            <img src="Logojueves.jpeg" alt="SerenaMente" class="about-logo-large" />
+          </div>
+          <div class="about-accent"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="background: var(--cream);">
+    <div class="container">
+      <div class="reveal" style="text-align: center;">
+        <span class="tag">Lo que nos guía</span>
+        <h2 class="section-title">Nuestros valores</h2>
+        <div class="divider" style="margin: 20px auto;"></div>
+        <p class="section-sub" style="margin: 0 auto; text-align: center;">Cada decisión que tomamos está guiada por principios que ponen a las personas en el centro.</p>
+      </div>
+      <div class="values-grid">
+        <div class="value-card reveal">
+          <div class="value-emoji"><i class="fa fa-water"></i></div>
+          <h3>Calma</h3>
+          <p>Creemos que la calma no es ausencia de problemas, sino una fortaleza interna que se cultiva día a día con práctica y comprensión.</p>
+        </div>
+        <div class="value-card reveal">
+          <div class="value-emoji"><i class="fa fa-handshake-o"></i></div>
+          <h3>Confianza</h3>
+          <p>Construimos relaciones basadas en la honestidad, el respeto y la coherencia. Tu proceso siempre será tratado con la máxima confidencialidad.</p>
+        </div>
+        <div class="value-card reveal">
+          <div class="value-emoji"><i class="fa fa-balance-scale"></i></div>
+          <h3>Equilibrio</h3>
+          <p>No buscamos la perfección. Buscamos una vida donde las distintas dimensiones de tu ser convivan en armonía sostenible.</p>
+        </div>
+        <div class="value-card reveal">
+          <div class="value-emoji"><i class="fa fa-heart"></i></div>
+          <h3>Compasión</h3>
+          <p>Hacia uno mismo y hacia los demás. La compasión es el suelo fértil donde crecen todos los cambios reales y duraderos.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section mission-section">
+    <div class="container">
+      <div class="reveal" style="text-align: center;">
+        <span class="tag" style="color: var(--teal-light);">Propósito</span>
+        <h2 class="section-title" style="color: white;">Misión, visión y propósito</h2>
+        <div class="divider" style="margin: 20px auto;"></div>
+      </div>
+      <div class="mission-cards">
+        <div class="mission-card reveal">
+          <div class="mission-icon"><i class="fa fa-bullseye"></i></div>
+          <h3>Nuestra misión</h3>
+          <p>Acompañar a personas en su camino hacia el bienestar mental y emocional, ofreciendo herramientas accesibles, efectivas y profundamente humanas.</p>
+        </div>
+        <div class="mission-card reveal">
+          <div class="mission-icon"><i class="fa fa-star"></i></div>
+          <h3>Nuestra visión</h3>
+          <p>Un mundo donde el cuidado de la salud mental sea una prioridad cotidiana y esté al alcance de todas las personas, sin importar su contexto.</p>
+        </div>
+        <div class="mission-card reveal">
+          <div class="mission-icon"><i class="fa fa-magic"></i></div>
+          <h3>Nuestro propósito</h3>
+          <p>Recordarle a cada persona que merece vivir en paz consigo misma y que siempre hay un camino de vuelta hacia su propio centro.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="background: var(--cream-dark);">
+    <div class="container">
+      <div class="reveal" style="text-align: center;">
+        <span class="tag">Equipo</span>
+        <h2 class="section-title">Las personas detrás de SerenaMente</h2>
+        <div class="divider" style="margin: 20px auto;"></div>
+        <p class="section-sub" style="margin: 0 auto; text-align: center;">Profesionales comprometidos con tu bienestar, con formación sólida y mucho corazón.</p>
+      </div>
+      <div class="team-grid">
+        <div class="team-card reveal">
+          <div class="team-avatar"><i class="fa fa-spa"></i></div>
+          <div class="team-body">
+            <h3>Sofía Martínez</h3>
+            <div class="team-role">Directora & Terapeuta</div>
+            <p>Psicóloga clínica con especialización en mindfulness y terapia cognitivo-conductual. Fundadora de SerenaMente.</p>
+          </div>
+        </div>
+        <div class="team-card reveal">
+          <div class="team-avatar"><i class="fa fa-leaf"></i></div>
+          <div class="team-body">
+            <h3>Andrés Orozco</h3>
+            <div class="team-role">Instructor de Meditación</div>
+            <p>Instructor certificado en meditación Vipassana y yoga nidra. 8 años acompañando procesos de transformación interior.</p>
+          </div>
+        </div>
+        <div class="team-card reveal">
+          <div class="team-avatar"><i class="fa fa-heart"></i></div>
+          <div class="team-body">
+            <h3>Valentina Reyes</h3>
+            <div class="team-role">Bienestar & Nutrición</div>
+            <p>Especialista en nutrición emocional y hábitos saludables. Conecta el bienestar físico con el emocional de forma integral.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding: 96px 0; background: var(--cream);">
+    <div class="container">
+      <div class="cta-banner reveal">
+        <h2>Únete a nuestra comunidad</h2>
+        <p>Comienza tu camino hacia el bienestar hoy. Estamos aquí para acompañarte en cada paso.</p>
+        <a href="contacto.html" class="btn btn-white">Empieza ahora</a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-brand-logo">
+            <img src="Logojueves.jpeg" alt="Logo" />
+            <span class="footer-brand-name">SerenaMente</span>
+          </div>
+          <p class="footer-desc">Un espacio para reconectar contigo. Calma, confianza y equilibrio para tu vida.</p>
+          <div class="social-links">
+            <a href="#" class="social-link"><i class="fa fa-camera"></i></a>
+            <a href="#" class="social-link"><i class="fa fa-heart"></i></a>
+            <a href="#" class="social-link"><i class="fa fa-comments"></i></a>
+            <a href="#" class="social-link"><i class="fa fa-heart"></i></a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Navegación</h4>
+          <ul class="footer-links">
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="nosotros.html">Nosotros</a></li>
+            <li><a href="servicios.html">Servicios</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Servicios</h4>
+          <ul class="footer-links">
+            <li><a href="servicios.html">Meditación guiada</a></li>
+            <li><a href="servicios.html">Acompañamiento terapéutico</a></li>
+            <li><a href="servicios.html">Talleres & Cursos</a></li>
+            <li><a href="servicios.html">Rutinas de relajación</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contacto</h4>
+          <ul class="footer-links">
+            <li><a href="mailto:hola@serenamente.co">hola@serenamente.co</a></li>
+            <li><a href="#">WhatsApp</a></li>
+            <li><a href="#">Montería, Córdoba</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2025 SerenaMente. Todos los derechos reservados.</span>
+        <div class="footer-bottom-links">
+          <a href="#">Política de privacidad</a>
+          <a href="#">Términos de uso</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 50));
+    const revealEls = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach((e, i) => { if (e.isIntersecting) { setTimeout(() => e.target.classList.add('visible'), i * 80); observer.unobserve(e.target); } });
+    }, { threshold: 0.12 });
+    revealEls.forEach(el => observer.observe(el));
+  </script>
+  <script src="zen_addon.js"></script>
+</body>
+</html>
